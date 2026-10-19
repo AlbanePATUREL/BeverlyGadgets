@@ -1,0 +1,17 @@
+### Ajout valide → 201
+POST http://localhost:3000/gadgets
+Content-Type: application/json
+
+{ "nom": "Gloss test", "prix": 19.9, "categorie": "Test", "disponible": true }
+
+### Nom vide → 400
+POST http://localhost:3000/gadgets
+Content-Type: application/json
+
+{ "nom": "", "prix": 10 }
+
+### Prix négatif → 400
+POST http://localhost:3000/gadgets
+Content-Type: application/json
+
+{ "nom": "Gadget", "prix": -5 }
