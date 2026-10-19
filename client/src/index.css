@@ -1,0 +1,21 @@
+/* met les cartes alligné */
+.cartes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* carte */
+.carte {
+  width: 200px;
+  padding: 16px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* carte indisponible : grisée */
+.indispo {
+  opacity: 0.4;
+  filter: grayscale(1);
+}

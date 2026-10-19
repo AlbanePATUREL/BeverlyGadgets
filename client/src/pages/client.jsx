@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { listerGadgets } from '../api.js';
+import Carte from '../Items/Carte.jsx';
 
 export default function PageClient() {
   const [gadgets, setGadgets] = useState([]);
@@ -9,11 +10,11 @@ export default function PageClient() {
     listerGadgets().then(setGadgets);
   }, []);
 
-  return (
-    <ul>
+    return (
+    <div className="cartes">
       {gadgets.map((g) => (
-        <li key={g.id}>{g.nom} — {g.prix} €</li>
+        <Carte key={g.id} gadget={g} />
       ))}
-    </ul>
+    </div>
   );
 }
