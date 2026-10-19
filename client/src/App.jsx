@@ -5,13 +5,20 @@ import PageGerant from './pages/admin.jsx';
 export default function App() {
   const [page, setPage] = useState('client'); // quelle page afficher
 
-  return (
+    return (
     <>
-      <h1>Beverly Gadgets</h1>
-      <button onClick={() => setPage('client')}>Boutique</button>
-      <button onClick={() => setPage('gerant')}>QG</button>
+      <header className="header">
+        <h1 className="logo">Beverly <span>Gadgets</span></h1>
+        <nav>
+          {/* La classe "actif" colore le bouton de la page affichée */}
+          <button className={page === 'client' ? 'actif' : ''} onClick={() => setPage('client')}>Boutique</button>
+          <button className={page === 'gerant' ? 'actif' : ''} onClick={() => setPage('gerant')}>QG</button>
+        </nav>
+      </header>
 
-      {page === 'client' ? <PageClient /> : <PageGerant />}
+      <main className="page">
+        {page === 'client' ? <PageClient /> : <PageGerant />}
+      </main>
     </>
   );
 }

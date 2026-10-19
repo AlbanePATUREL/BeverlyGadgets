@@ -18,6 +18,7 @@ g.nom.toLowerCase().includes(recherche.toLowerCase())
       return (
     <div>
       <input
+        className="recherche"
         placeholder="Rechercher un gadget..."
         value={recherche}
         onChange={(e) => setRecherche(e.target.value)}

@@ -1,21 +1,181 @@
-/* met les cartes alligné */
+:root {
+  --nuit: #14062b;       /* fond violet très foncé */
+  --violet: #7b3ff2;
+  --rose: #ff2e9a;
+  --menthe: #3ff5c3;
+  --texte: #f4ecff;
+  --texte-doux: #b9a8d9;
+  --bordure: rgba(177, 140, 255, 0.25);
+}
+
+/* ===== Page ===== */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  color: var(--texte);
+  background: var(--nuit);
+  /* deux halos de couleur en fond */
+  background-image:
+    radial-gradient(circle at 85% 0%, rgba(255, 46, 154, 0.25), transparent 40%),
+    radial-gradient(circle at 0% 40%, rgba(123, 63, 242, 0.35), transparent 45%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* ===== Header ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: rgba(20, 6, 43, 0.8);
+  backdrop-filter: blur(10px);      /* effet verre flouté */
+  border-bottom: 1px solid var(--bordure);
+}
+
+.logo {
+  margin: 0;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.5rem;
+}
+
+.logo span { color: var(--rose); }
+
+/* Boutons du menu */
+nav button {
+  margin-left: 8px;
+  padding: 10px 20px;
+  border: 1px solid var(--bordure);
+  border-radius: 999px;            /* forme pilule */
+  background: transparent;
+  color: var(--texte);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+nav button:hover { background: rgba(255, 255, 255, 0.08); }
+
+/* bouton de la page affichée */
+nav button.actif {
+  background: linear-gradient(135deg, var(--rose), var(--violet));
+  border-color: transparent;
+}
+
+/* ===== Contenu ===== */
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+/* Barre de recherche */
+.recherche {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 32px;
+  padding: 14px 20px;
+  font: inherit;
+  color: var(--texte);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--bordure);
+  border-radius: 999px;
+  outline: none;
+}
+
+.recherche:focus { border-color: var(--menthe); }
+
+/* ===== Grille de cartes (flexbox) ===== */
 .cartes {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-wrap: wrap;                 
+  gap: 24px;
 }
 
-/* carte */
+/* ===== Carte produit ===== */
 .carte {
-  width: 200px;
-  padding: 16px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;           
+  width: 260px;
+  overflow: hidden;
+  background: linear-gradient(160deg, rgba(60, 25, 110, 0.8), rgba(25, 8, 50, 0.9));
+  border: 1px solid var(--bordure);
+  border-radius: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* carte indisponible : grisée */
-.indispo {
+/* au survol : la carte monte et brille en rose */
+.carte:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(255, 46, 154, 0.35);
+}
+
+.carte-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;                 /* image carrée */
+  object-fit: cover;               /* remplit sans être déformée */
+}
+
+.carte-infos { padding: 16px; }
+
+.carte-categorie {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texte-doux);
+}
+
+.carte h2 {
+  margin: 6px 0;
+  font-size: 1.1rem;
+}
+
+.carte-prix {
+  margin: 0;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.2rem;
+  color: var(--menthe);
+}
+
+/* ===== Gadget indisponible : grisé, mais le badge reste en couleur ===== */
+.indispo .carte-image,
+.indispo .carte-infos {
   opacity: 0.4;
   filter: grayscale(1);
+}
+
+.indispo:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--rose);
+  background: rgba(20, 6, 43, 0.9);
+  border: 2px dashed var(--rose);
+  border-radius: 8px;
+  transform: rotate(-6deg);        /* effet tampon */
+}
+
+/* ===== Mobile : écran étroit ===== */
+@media (max-width: 600px) {
+  .header { padding: 12px 16px; }
+  .logo { font-size: 1.1rem; }
+  .page { padding: 16px; }
+  .carte { width: 100%; }          /* une carte par ligne */
 }
