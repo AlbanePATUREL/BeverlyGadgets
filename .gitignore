@@ -1,0 +1,8 @@
+# Dépendances (énormes, se réinstallent avec npm install)
+node_modules
+
+# Clés secrètes : ne JAMAIS les envoyer sur GitHub
+.env
+
+# Build du front
+dist
