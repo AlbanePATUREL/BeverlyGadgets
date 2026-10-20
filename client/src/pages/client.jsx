@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { listerGadgets } from '../api.js';
 import Carte from '../Items/Carte.jsx';
+import FicheGadget from '../Items/FicheGadget.jsx';
 
 export default function PageClient() {
   const [gadgets, setGadgets] = useState([]);
   const [recherche, setRecherche] = useState('');
+  const [idChoisi, setIdChoisi] = useState(null); // l'id du gadget ouvert, ou null = aucun
 
   // Au chargement de la page, on demande la liste à l'API
   useEffect(() => {
@@ -14,6 +16,12 @@ export default function PageClient() {
 const gadgetsFiltres = gadgets.filter((g) =>
 g.nom.toLowerCase().includes(recherche.toLowerCase())
   );
+
+// Si un gadget est choisi, on affiche sa fiche à la place du catalogue
+if (idChoisi !== null) {
+  return <FicheGadget id={idChoisi} onRetour={() => setIdChoisi(null)} />;
+}
+
 
       return (
     <div>
@@ -26,7 +34,7 @@ g.nom.toLowerCase().includes(recherche.toLowerCase())
 
       <div className="cartes">
         {gadgetsFiltres.map((g) => (
-          <Carte key={g.id} gadget={g} />
+          <Carte key={g.id} gadget={g} onClick={() => setIdChoisi(g.id)} />
         ))}
       </div>
     </div>

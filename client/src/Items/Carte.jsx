@@ -1,7 +1,7 @@
 // Une carte produit : image, catégorie, nom, prix
-export default function Carte({ gadget }) {
+export default function Carte({ gadget, onClick }) {
   return (
-    <div className={gadget.disponible ? 'carte' : 'carte indispo'}>
+    <div className={gadget.disponible ? 'carte' : 'carte indispo'} onClick={onClick}>
       {/* si...sinon */}
       {!gadget.disponible && <span className="badge">En mission</span>}
 
