@@ -7,6 +7,7 @@ export default function App() {
 
     return (
     <>
+      <div className="bandeau">Livraison discrète offerte dès 100 € · Emballage top secret</div>
       <header className="header">
         <h1 className="logo">Beverly <span>Gadgets</span></h1>
         <nav>

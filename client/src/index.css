@@ -1,27 +1,24 @@
+/* ===== Couleurs du site ===== */
 :root {
-  --nuit: #14062b;       /* fond violet très foncé */
-  --violet: #7b3ff2;
-  --rose: #ff2e9a;
-  --menthe: #3ff5c3;
-  --texte: #f4ecff;
-  --texte-doux: #b9a8d9;
-  --bordure: rgba(177, 140, 255, 0.25);
+  --fond: #faf7f5;          /* blanc cassé chaud */
+  --blanc: #ffffff;
+  --texte: #1f1724;         /* presque noir, légèrement violet */
+  --texte-doux: #7a6d80;    /* gris violacé pour les infos secondaires */
+  --bordure: #ebe3e8;       /* lignes fines */
+  --accent: #a3195b;        /* rose framboise (la couleur de la marque) */
+  --accent-clair: #f7e8ef;  /* rose très pâle pour les fonds */
+  --menthe: #2f9e83;        /* vert pour les messages de succès */
 }
 
-/* ===== Page ===== */
+/* ===== Base ===== */
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Jost', sans-serif;
+  font-size: 16px;
   color: var(--texte);
-  background: var(--nuit);
-  /* deux halos de couleur en fond */
-  background-image:
-    radial-gradient(circle at 85% 0%, rgba(255, 46, 154, 0.25), transparent 40%),
-    radial-gradient(circle at 0% 40%, rgba(123, 63, 242, 0.35), transparent 45%);
-  background-attachment: fixed;
-  min-height: 100vh;
+  background: var(--fond);
 }
 
 /* ===== Header ===== */
@@ -32,150 +29,173 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 32px;
-  background: rgba(20, 6, 43, 0.8);
-  backdrop-filter: blur(10px);      /* effet verre flouté */
+  padding: 20px 48px;
+  background: var(--blanc);
   border-bottom: 1px solid var(--bordure);
 }
 
 .logo {
   margin: 0;
-  font-family: 'Unbounded', sans-serif;
-  font-size: 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
-.logo span { color: var(--rose); }
+/* "Gadgets" en italique et en couleur */
+.logo span {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent);
+}
 
-/* Boutons du menu */
+/* Menu : des liens texte, soulignés quand ils sont actifs */
 nav button {
-  margin-left: 8px;
-  padding: 10px 20px;
-  border: 1px solid var(--bordure);
-  border-radius: 999px;            /* forme pilule */
-  background: transparent;
-  color: var(--texte);
+  margin-left: 32px;
+  padding: 6px 0;
   font: inherit;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texte-doux);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: color 0.2s, border-color 0.2s;
 }
 
-nav button:hover { background: rgba(255, 255, 255, 0.08); }
+nav button:hover { color: var(--texte); }
 
-/* bouton de la page affichée */
 nav button.actif {
-  background: linear-gradient(135deg, var(--rose), var(--violet));
-  border-color: transparent;
+  color: var(--texte);
+  border-bottom-color: var(--accent);
 }
 
 /* ===== Contenu ===== */
 .page {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 32px;
+  padding: 48px;
 }
 
 /* Barre de recherche */
 .recherche {
+  display: block;
   width: 100%;
-  max-width: 400px;
-  margin-bottom: 32px;
-  padding: 14px 20px;
+  max-width: 360px;
+  margin-bottom: 40px;
+  padding: 12px 16px;
   font: inherit;
   color: var(--texte);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--blanc);
   border: 1px solid var(--bordure);
-  border-radius: 999px;
+  border-radius: 4px;
   outline: none;
+  transition: border-color 0.2s;
 }
 
-.recherche:focus { border-color: var(--menthe); }
+.recherche::placeholder { color: var(--texte-doux); }
+.recherche:focus { border-color: var(--texte); }
 
-/* ===== Grille de cartes (flexbox) ===== */
+/* ===== Grille de produits (flexbox, 4 par ligne) ===== */
 .cartes {
   display: flex;
-  flex-wrap: wrap;                 
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 48px 24px;            /* 48px entre les lignes, 24px entre les colonnes */
 }
 
 /* ===== Carte produit ===== */
 .carte {
-  position: relative;           
-  width: 260px;
-  overflow: hidden;
-  background: linear-gradient(160deg, rgba(60, 25, 110, 0.8), rgba(25, 8, 50, 0.9));
-  border: 1px solid var(--bordure);
-  border-radius: 20px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-/* au survol : la carte monte et brille en rose */
-.carte:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(255, 46, 154, 0.35);
+  position: relative;        /* pour placer l'étiquette sur la photo */
+  flex: 0 1 calc((100% - 3 * 24px) / 4);
+  cursor: pointer;
 }
 
 .carte-image {
   display: block;
   width: 100%;
-  aspect-ratio: 1;                 /* image carrée */
-  object-fit: cover;               /* remplit sans être déformée */
+  aspect-ratio: 1;           /* photo carrée */
+  object-fit: cover;
+  border-radius: 4px;
+  background: var(--accent-clair);
+  transition: opacity 0.3s;
 }
 
-.carte-infos { padding: 16px; }
+.carte:hover .carte-image { opacity: 0.88; }
+
+.carte-infos { padding-top: 14px; }
 
 .carte-categorie {
-  margin: 0;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  margin: 0 0 6px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--texte-doux);
 }
 
 .carte h2 {
-  margin: 6px 0;
-  font-size: 1.1rem;
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
 }
+
+.carte:hover h2 { text-decoration: underline; }
 
 .carte-prix {
   margin: 0;
-  font-family: 'Unbounded', sans-serif;
-  font-size: 1.2rem;
-  color: var(--menthe);
+  font-weight: 600;
 }
 
-/* ===== Gadget indisponible : grisé, mais le badge reste en couleur ===== */
-.indispo .carte-image,
-.indispo .carte-infos {
-  opacity: 0.4;
+/* ===== Gadget indisponible : grisé ===== */
+.indispo .carte-image {
   filter: grayscale(1);
+  opacity: 0.5;
 }
 
-.indispo:hover {
-  transform: none;
-  box-shadow: none;
-}
+.indispo .carte-infos { opacity: 0.55; }
+.indispo:hover .carte-image { opacity: 0.5; }
+.indispo:hover h2 { text-decoration: none; }
 
+/* Étiquette "En mission" (comme "Rupture de stock") */
 .badge {
   position: absolute;
   top: 12px;
   left: 12px;
   z-index: 1;
-  padding: 6px 12px;
-  font-size: 0.75rem;
+  padding: 5px 10px;
+  font-size: 0.7rem;
   font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--rose);
-  background: rgba(20, 6, 43, 0.9);
-  border: 2px dashed var(--rose);
-  border-radius: 8px;
-  transform: rotate(-6deg);        /* effet tampon */
+  color: var(--blanc);
+  background: var(--texte);
+  border-radius: 2px;
 }
 
-/* ===== Mobile : écran étroit ===== */
-@media (max-width: 600px) {
-  .header { padding: 12px 16px; }
-  .logo { font-size: 1.1rem; }
-  .page { padding: 16px; }
-  .carte { width: 100%; }          /* une carte par ligne */
+/* ===== Tablette : 3 puis 2 produits par ligne ===== */
+@media (max-width: 1000px) {
+  .carte { flex-basis: calc((100% - 2 * 24px) / 3); }
+}
+
+@media (max-width: 720px) {
+  .header { padding: 16px 20px; }
+  .logo { font-size: 1.3rem; }
+  nav button { margin-left: 18px; }
+  .page { padding: 24px 20px; }
+  .cartes { gap: 32px 16px; }
+  .carte { flex-basis: calc((100% - 16px) / 2); }
+}
+
+/* Bandeau d'annonce tout en haut */
+.bandeau {
+  padding: 9px 16px;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: var(--blanc);
+  background: var(--texte);
 }
