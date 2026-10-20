@@ -2,7 +2,7 @@
 export default function Carte({ gadget }) {
   return (
     <div className={gadget.disponible ? 'carte' : 'carte indispo'}>
-      {/* Badge seulement si le gadget n'est pas disponible */}
+      {/* si...sinon */}
       {!gadget.disponible && <span className="badge">En mission</span>}
 
       {/* Les images sont dans client/public/images */}
