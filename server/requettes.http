@@ -1,27 +1,27 @@
 ### Ajout valide → 201
-POST http://localhost:3000/gadgets
+POST https://beverlygadgets-aypr.onrender.com/gadgets
 Content-Type: application/json
 
 { "nom": "Gloss test", "prix": 19.9, "categorie": "Test", "disponible": true }
 
 ### Nom vide → 400
-POST http://localhost:3000/gadgets
+POST https://beverlygadgets-aypr.onrender.com/gadgets
 Content-Type: application/json
 
 { "nom": "", "prix": 10 }
 
 ### Prix négatif → 400
-POST http://localhost:3000/gadgets
+POST https://beverlygadgets-aypr.onrender.com/gadgets
 Content-Type: application/json
 
 { "nom": "Gadget", "prix": -5 }
 
 
 ### Un gadget qui existe → 200
-GET http://localhost:3000/gadgets/1
+GET https://beverlygadgets-aypr.onrender.com/gadgets/1
 
 ### Un gadget qui n'existe pas → 404
-GET http://localhost:3000/gadgets/9999
+GET https://beverlygadgets-aypr.onrender.com/gadgets/9999
 
 ### Un id qui n'est pas un nombre → 404
-GET http://localhost:3000/gadgets/abc
+GET https://beverlygadgets-aypr.onrender.com/gadgets/abc
