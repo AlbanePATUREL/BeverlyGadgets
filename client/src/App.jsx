@@ -1,31 +1,31 @@
 import { useState } from 'react';
 import PageClient from './pages/client.jsx';
 import PageGerant from './pages/admin.jsx';
+import Header from './Items/Header.jsx';
+import Footer from './Items/Footer.jsx';
 
 export default function App() {
   const [page, setPage] = useState('client'); // quelle page afficher
-  const [panier, setPanier] = useState([]);//creation panier avc useState (création tableau vide)
+  const [panier, setPanier] = useState([]);   //creation panier avc useState (création tableau vide)
 
   function ajouterAuPanier(gadget) {
-    setPanier([...panier, gadget]);//ajout gadget au panier en last
+    setPanier([...panier, gadget]); //ajout gadget au panier en last
   }
 
-    return (
+  return (
     <>
       <div className="bandeau">Livraison discrète offerte dès 100 € · Emballage top secret</div>
-      <header className="header">
-        <h1 className="logo">Beverly <span>Gadgets</span></h1>
-        <nav>
-          {/* La classe "actif" colore le bouton de la page affichée */}
-          <button className={page === 'client' ? 'actif' : ''} onClick={() => setPage('client')}>Boutique</button>
-          <button className={page === 'gerant' ? 'actif' : ''} onClick={() => setPage('gerant')}>QG</button>
-          <button>Panier ({panier.length})</button>
-        </nav>
-      </header>
+
+      {/* le header reçoit la page actuelle, le moyen d'en changer et le nombre d'articles du panier */}
+      <Header page={page} setPage={setPage} nbPanier={panier.length} />
 
       <main className="page">
-        <PageClient ajouterAuPanier={ajouterAuPanier} />
+        {page === 'client'
+          ? <PageClient ajouterAuPanier={ajouterAuPanier} />
+          : <PageGerant />}
       </main>
+
+      <Footer />
     </>
   );
 }

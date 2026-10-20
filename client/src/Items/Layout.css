@@ -1,0 +1,91 @@
+/* ===== Header ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 48px;
+  background: var(--blanc);
+  border-bottom: 1px solid var(--bordure);
+}
+
+.logo {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Gadgets en italique et en couleur */
+.logo span {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+/* Menu : des liens texte, soulignés quand ils sont actifs */
+nav button {
+  margin-left: 32px;
+  padding: 6px 0;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texte-doux);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+nav button:hover { color: var(--texte); }
+
+nav button.actif {
+  color: var(--texte);
+  border-bottom-color: var(--accent);
+}
+
+/* Bandeau d'annonce tout en haut */
+.bandeau {
+  padding: 9px 16px;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: var(--blanc);
+  background: var(--texte);
+}
+
+/* ===== Footer ===== */
+.footer {
+  margin-top: 96px;
+  padding: 56px 24px;
+  text-align: center;
+  color: #d9cfe0;
+  background: var(--texte);
+}
+
+.footer p { margin: 6px 0; }
+
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--blanc);
+}
+
+.footer-logo span {
+  font-style: italic;
+  font-weight: 500;
+  color: #f2a9c9;
+}
+
+.footer-mentions {
+  margin-top: 24px !important;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
