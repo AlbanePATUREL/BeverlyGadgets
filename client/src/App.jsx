@@ -4,6 +4,11 @@ import PageGerant from './pages/admin.jsx';
 
 export default function App() {
   const [page, setPage] = useState('client'); // quelle page afficher
+  const [panier, setPanier] = useState([]);//creation panier avc useState (création tableau vide)
+
+  function ajouterAuPanier(gadget) {
+    setPanier([...panier, gadget]);//ajout gadget au panier en last
+  }
 
     return (
     <>
@@ -14,11 +19,12 @@ export default function App() {
           {/* La classe "actif" colore le bouton de la page affichée */}
           <button className={page === 'client' ? 'actif' : ''} onClick={() => setPage('client')}>Boutique</button>
           <button className={page === 'gerant' ? 'actif' : ''} onClick={() => setPage('gerant')}>QG</button>
+          <button>Panier ({panier.length})</button>
         </nav>
       </header>
 
       <main className="page">
-        {page === 'client' ? <PageClient /> : <PageGerant />}
+        <PageClient ajouterAuPanier={ajouterAuPanier} />
       </main>
     </>
   );
