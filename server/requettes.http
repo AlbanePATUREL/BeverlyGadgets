@@ -15,3 +15,13 @@ POST http://localhost:3000/gadgets
 Content-Type: application/json
 
 { "nom": "Gadget", "prix": -5 }
+
+
+### Un gadget qui existe → 200
+GET http://localhost:3000/gadgets/1
+
+### Un gadget qui n'existe pas → 404
+GET http://localhost:3000/gadgets/9999
+
+### Un id qui n'est pas un nombre → 404
+GET http://localhost:3000/gadgets/abc

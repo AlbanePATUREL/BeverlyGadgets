@@ -17,6 +17,26 @@ app.get('/gadgets', async (req, res) => {
   res.status(200).json(data);
 });
 
+
+app.get('/gadgets/:id', async (req, res) => {
+  const id = req.params.id; 
+
+  if (isNaN(id)) {
+    return res.status(404).json({ erreur: 'Gadget introuvable' });
+  }
+
+  const { data, error } = await supabase
+    .from('gadgets')
+    .select('*')
+    .eq('id', id)   
+    .maybeSingle(); 
+
+  if (error) return res.status(500).json({ erreur: error.message });
+  if (!data) return res.status(404).json({ erreur: 'Gadget introuvable' });
+
+  res.status(200).json(data);
+});
+
 // POST /gadgets : ajoute un gadget
 app.post('/gadgets', async (req, res) => {
   const { nom, prix, categorie, visuel, disponible } = req.body;
