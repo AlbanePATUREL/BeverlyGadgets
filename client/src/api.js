@@ -36,3 +36,21 @@ export async function modifierGadget(id, modifications) {
 
   return data;
 }
+
+// Ajoute un gadget 
+export async function ajouterGadget(gadget) {
+  const res = await fetch(`${API}/gadgets`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(gadget),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.erreur || "L'ajout a échoué.");
+  return data;
+}
+
+// Supprime un gadget
+export async function supprimerGadget(id) {
+  const res = await fetch(`${API}/gadgets/${id}`, { method: 'DELETE' });
+  if (!res.ok) throw new Error('La suppression a échoué.');
+}
