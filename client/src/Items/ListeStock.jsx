@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { listerGadgets, modifierGadget } from '../api';
-import './Stock.css';
+import './stock.css';
 
 export default function ListeStock() {
   const [gadgets, setGadgets] = useState([]);
