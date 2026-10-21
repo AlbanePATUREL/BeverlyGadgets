@@ -16,3 +16,23 @@ export async function lireGadget(id) {
   }
   return data;
 }
+ // Modifier un gadget via notre API Express
+export async function modifierGadget(id, modifications) {
+  const reponse = await fetch(`${API}/gadgets/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(modifications),
+  });
+
+  const data = await reponse.json();
+
+  if (!reponse.ok) {
+    throw new Error(data.erreur || 'Erreur lors de la modification');
+  }
+
+
+
+  return data;
+}
