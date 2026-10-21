@@ -9,7 +9,6 @@ export default function Carte({ gadget, onClick }) {
       <img className="carte-image" src={`/images/${gadget.visuel}`} alt={gadget.nom} />
 
       <div className="carte-infos">
-        <p className="carte-categorie">{gadget.categorie}</p>
         <h2>{gadget.nom}</h2>
         <p className="carte-prix">{gadget.prix} €</p>
       </div>

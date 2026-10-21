@@ -36,7 +36,9 @@ export default function FicheGadget({ id, onRetour }) {
         />
 
         <div className="fiche-infos">
-          <p className="fiche-categorie">{gadget.categorie}</p>
+          <p className="fiche-description">
+            {gadget.description || "Un gadget exclusif sélectionné par le QG. Plus d'informations très bientôt."}
+          </p>
           <h2>{gadget.nom}</h2>
           <p className="fiche-prix">{gadget.prix} €</p>
           <p className={gadget.disponible ? 'fiche-stock dispo' : 'fiche-stock'}>

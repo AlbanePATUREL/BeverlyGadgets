@@ -39,7 +39,7 @@ app.get('/gadgets/:id', async (req, res) => {
 
 // POST /gadgets : ajoute un gadget
 app.post('/gadgets', async (req, res) => {
-  const { nom, prix, categorie, visuel, disponible } = req.body;
+  const { nom, prix, description, visuel, disponible } = req.body;
 
   // Validation : on refuse les données incorrectes avec un code 400
   if (!nom || nom.trim() === '') {
@@ -54,7 +54,7 @@ app.post('/gadgets', async (req, res) => {
 
   const { data, error } = await supabase
     .from('gadgets')
-    .insert({ nom: nom.trim(), prix: Number(prix), categorie, visuel, disponible })
+    .insert({ nom: nom.trim(), prix: Number(prix), description, visuel, disponible })
     .select()   // pour récupérer le gadget créé (avec son id)
     .single();
 
@@ -65,7 +65,7 @@ app.post('/gadgets', async (req, res) => {
  // PUT /gadgets/:id : modifier un gadget
 app.put('/gadgets/:id', async (req, res) => {
   const id = req.params.id;
-  const { nom, prix, categorie, visuel, disponible } = req.body;
+  const { nom, prix, description, visuel, disponible } = req.body;
 
   // 1. Vérifier que l'identifiant est valide
   if (!/^\d+$/.test(id) || Number(id) <= 0) {
@@ -94,7 +94,7 @@ app.put('/gadgets/:id', async (req, res) => {
 
   if (nom !== undefined) modifications.nom = nom.trim();
   if (prix !== undefined) modifications.prix = Number(prix);
-  if (categorie !== undefined) modifications.categorie = categorie;
+  if (description !== undefined) modifications.description = description;
   if (visuel !== undefined) modifications.visuel = visuel;
   if (disponible !== undefined) modifications.disponible = disponible;
 

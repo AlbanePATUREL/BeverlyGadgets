@@ -74,7 +74,6 @@ export default function ListeStock() {
             )}
 
             <h3>{gadget.nom}</h3>
-            <p>Catégorie : {gadget.categorie || 'Non précisée'}</p>
             <p>Prix : {gadget.prix} €</p>
 
             <p>

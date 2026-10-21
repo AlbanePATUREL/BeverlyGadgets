@@ -3,7 +3,7 @@
 POST https://beverlygadgets-aypr.onrender.com/gadgets
 Content-Type: application/json
 
-{ "nom": "Gloss test", "prix": 19.9, "categorie": "Test", "disponible": true }
+{ "nom": "Gloss test", "prix": 19.9, "description": "Un gloss de test.", "disponible": true }
 
 
 ### Nom vide → 400
