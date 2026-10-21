@@ -1,14 +1,17 @@
+
 ### Ajout valide → 201
 POST https://beverlygadgets-aypr.onrender.com/gadgets
 Content-Type: application/json
 
 { "nom": "Gloss test", "prix": 19.9, "categorie": "Test", "disponible": true }
 
+
 ### Nom vide → 400
 POST https://beverlygadgets-aypr.onrender.com/gadgets
 Content-Type: application/json
 
 { "nom": "", "prix": 10 }
+
 
 ### Prix négatif → 400
 POST https://beverlygadgets-aypr.onrender.com/gadgets
@@ -20,8 +23,48 @@ Content-Type: application/json
 ### Un gadget qui existe → 200
 GET https://beverlygadgets-aypr.onrender.com/gadgets/1
 
+
 ### Un gadget qui n'existe pas → 404
 GET https://beverlygadgets-aypr.onrender.com/gadgets/9999
 
+
 ### Un id qui n'est pas un nombre → 404
 GET https://beverlygadgets-aypr.onrender.com/gadgets/abc
+
+
+### FILLE 2 — MODIFIER UN GADGET
+
+
+### Modification valide de la disponibilité → 200
+PUT https://beverlygadgets-aypr.onrender.com/gadgets/1
+Content-Type: application/json
+
+{ "disponible": false }
+
+
+### Prix négatif → 400
+PUT https://beverlygadgets-aypr.onrender.com/gadgets/1
+Content-Type: application/json
+
+{ "prix": -5 }
+
+
+### Disponibilité invalide → 400
+PUT https://beverlygadgets-aypr.onrender.com/gadgets/1
+Content-Type: application/json
+
+{ "disponible": "oui" }
+
+
+### Gadget inexistant → 404
+PUT https://beverlygadgets-aypr.onrender.com/gadgets/9999
+Content-Type: application/json
+
+{ "disponible": false }
+
+
+### Identifiant invalide → 404
+PUT https://beverlygadgets-aypr.onrender.com/gadgets/abc
+Content-Type: application/json
+
+{ "disponible": false }

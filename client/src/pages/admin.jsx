@@ -1,3 +1,6 @@
+
+import ListeStock from '../Items/ListeStock';
+
 export default function PageGerant() {
-  return <p>Page gérante — à construire</p>;
+  return <ListeStock />;
 }
