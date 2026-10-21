@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { listerGadgets, modifierGadget } from '../api';
 import './stock.css';
+import { formatPrix } from '../format.js';
 
 export default function ListeStock() {
   const [gadgets, setGadgets] = useState([]);
@@ -74,7 +75,7 @@ export default function ListeStock() {
             )}
 
             <h3>{gadget.nom}</h3>
-            <p>Prix : {gadget.prix} €</p>
+            <p>Prix : {formatPrix(gadget.prix)}</p>
 
             <p>
               Disponibilité :{' '}
