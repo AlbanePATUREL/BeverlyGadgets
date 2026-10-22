@@ -54,7 +54,7 @@ export default function App() {
       <main className="page">
         {/* CHANGÉ : trois pages au lieu de deux */}
         {page === 'client' && <PageClient ajouterAuPanier={ajouterAuPanier} />}
-        {page === 'admin' && <PageGerant />}
+        {page === 'gerant' && <PageGerant />}
         {page === 'panier' && (
           <PagePanier
             panier={panier}
