@@ -8,7 +8,7 @@ export default function Header({ page, setPage, nbPanier }) {
       <nav>
         <button className={page === 'client' ? 'actif' : ''} onClick={() => setPage('client')}>Boutique</button>
         <button className={page === 'gerant' ? 'actif' : ''} onClick={() => setPage('gerant')}>QG</button>
-        <button>Panier ({nbPanier})</button>
+        <button className={page === 'panier' ? 'actif' : ''} onClick={() => setPage('panier')}>Panier ({nbPanier})</button>
       </nav>
     </header>
   );

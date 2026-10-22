@@ -5,7 +5,7 @@ import { formatPrix } from '../format.js';
 
 // fiche détaillée d'un gadget.
 // "id" = le gadget à afficher, "onRetour" = la fonction pour revenir au catalogue
-export default function FicheGadget({ id, onRetour }) {
+export default function FicheGadget({ id, onRetour, onAjouter  }) {
   const [gadget, setGadget] = useState(null);
   const [erreur, setErreur] = useState('');
 
@@ -45,6 +45,13 @@ export default function FicheGadget({ id, onRetour }) {
           <p className={gadget.disponible ? 'fiche-stock dispo' : 'fiche-stock'}>
             {gadget.disponible ? '● En stock au QG' : '● En mission, bientôt de retour'}
           </p>
+          <button
+  className="fiche-ajouter"
+  disabled={!gadget.disponible}
+  onClick={() => onAjouter(gadget)}
+>
+  {gadget.disponible ? 'Ajouter au panier' : 'Indisponible'}
+</button>
         </div>
       </div>
     </div>

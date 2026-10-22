@@ -1,0 +1,124 @@
+/* ===== Page panier ===== */
+.panier-titre {
+  margin: 0 0 32px;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+
+.panier-ligne {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--bordure);
+}
+
+.panier-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  background: var(--accent-clair);
+}
+
+.panier-nom {
+  flex: 1 1 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.panier-nom span { color: var(--texte-doux); }
+
+.panier-quantite {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.panier-quantite button {
+  width: 32px;
+  height: 32px;
+  font: inherit;
+  color: var(--texte);
+  background: none;
+  border: 1px solid var(--bordure);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.panier-quantite button:hover { border-color: var(--texte); }
+
+.panier-sous-total {
+  min-width: 90px;
+  text-align: right;
+  font-weight: 600;
+}
+
+.panier-retirer,
+.panier-lien {
+  padding: 0;
+  font: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texte-doux);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.panier-retirer:hover,
+.panier-lien:hover { color: var(--texte); }
+
+.panier-resume {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+}
+
+.panier-total {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  font-size: 1.2rem;
+}
+
+.panier-total strong { font-size: 1.8rem; }
+
+.panier-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panier-bouton {
+  padding: 14px 32px;
+  font: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.panier-bouton:hover { opacity: 0.85; }
+
+.panier-vide {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.panier-vide h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+}
+
+.panier-vide p { margin-bottom: 28px; color: var(--texte-doux); }

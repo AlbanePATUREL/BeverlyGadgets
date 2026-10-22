@@ -3,7 +3,7 @@ import { listerGadgets } from '../api.js';
 import Carte from '../Items/Carte.jsx';
 import FicheGadget from '../Items/FicheGadget.jsx';
 
-export default function PageClient() {
+export default function PageClient({ ajouterAuPanier }) {
   const [gadgets, setGadgets] = useState([]);
   const [recherche, setRecherche] = useState('');
   const [idChoisi, setIdChoisi] = useState(null); // l'id du gadget ouvert, ou null = aucun
@@ -19,7 +19,13 @@ g.nom.toLowerCase().includes(recherche.toLowerCase())
 
 // Si un gadget est choisi, on affiche sa fiche à la place du catalogue
 if (idChoisi !== null) {
-  return <FicheGadget id={idChoisi} onRetour={() => setIdChoisi(null)} />;
+  return (
+    <FicheGadget
+      id={idChoisi}
+      onRetour={() => setIdChoisi(null)}
+      onAjouter={ajouterAuPanier}
+    />
+  );
 }
 
 
