@@ -123,5 +123,21 @@ app.put('/gadgets/:id', async (req, res) => {
   res.status(200).json(data);
 });
 
+// DELETE /gadgets/:id : supprimer un gadget
+app.delete('/gadgets/:id', async (req, res) => {
+  const id = req.params.id;
+
+  const { data, error } = await supabase
+    .from('gadgets')
+    .delete()
+    .eq('id', id)
+    .select();
+
+  if (error) return res.status(500).json({ erreur: error.message });
+  if (data.length === 0) return res.status(404).json({ erreur: 'Gadget introuvable' });
+
+  res.status(204).end();
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`API lancée sur http://localhost:${PORT}`));

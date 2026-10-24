@@ -45,3 +45,35 @@
 .stock-erreur {
   color: #c62828;
 }
+
+.stock-form { 
+  display: grid; 
+  gap: 10px; 
+  max-width: 480px; 
+  padding: 16px; 
+  border: 1px solid #ddd; 
+  border-radius: 10px; 
+  margin-bottom: 24px; 
+}
+
+.stock-form label { 
+  display: grid; 
+  gap: 4px; }
+
+.stock-form input, .stock-form textarea { 
+  padding: 8px; 
+  border: 1px solid #ccc; 
+  border-radius: 6px; 
+  font: inherit; 
+}
+
+.stock-case { 
+  display: flex !important; 
+  align-items: center; 
+  gap: 8px; }
+
+.stock-supprimer { 
+  background: #e2246c; 
+  color: #fff; 
+  border: none; 
+}

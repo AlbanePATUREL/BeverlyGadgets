@@ -1,4 +1,5 @@
 // Une carte produit : image, catégorie, nom, prix
+import { formatPrix } from '../format.js';
 export default function Carte({ gadget, onClick }) {
   return (
     <div className={gadget.disponible ? 'carte' : 'carte indispo'} onClick={onClick}>
@@ -10,7 +11,7 @@ export default function Carte({ gadget, onClick }) {
 
       <div className="carte-infos">
         <h2>{gadget.nom}</h2>
-        <p className="carte-prix">{gadget.prix} €</p>
+        <p className="carte-prix">{formatPrix(gadget.prix)}</p>
       </div>
     </div>
   );

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { lireGadget } from '../api.js';
 import './Fiche.css';
+import { formatPrix } from '../format.js';
 
 // fiche détaillée d'un gadget.
 // "id" = le gadget à afficher, "onRetour" = la fonction pour revenir au catalogue
-export default function FicheGadget({ id, onRetour }) {
+export default function FicheGadget({ id, onRetour, onAjouter  }) {
   const [gadget, setGadget] = useState(null);
   const [erreur, setErreur] = useState('');
 
@@ -36,14 +37,21 @@ export default function FicheGadget({ id, onRetour }) {
         />
 
         <div className="fiche-infos">
+          <h2>{gadget.nom}</h2>
+          <p className="fiche-prix">{formatPrix(gadget.prix)}</p>
           <p className="fiche-description">
             {gadget.description || "Un gadget exclusif sélectionné par le QG. Plus d'informations très bientôt."}
           </p>
-          <h2>{gadget.nom}</h2>
-          <p className="fiche-prix">{gadget.prix} €</p>
           <p className={gadget.disponible ? 'fiche-stock dispo' : 'fiche-stock'}>
             {gadget.disponible ? '● En stock au QG' : '● En mission, bientôt de retour'}
           </p>
+          <button
+  className="fiche-ajouter"
+  disabled={!gadget.disponible}
+  onClick={() => onAjouter(gadget)}
+>
+  {gadget.disponible ? 'Ajouter au panier' : 'Indisponible'}
+</button>
         </div>
       </div>
     </div>
