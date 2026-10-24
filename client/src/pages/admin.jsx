@@ -1,6 +1,5 @@
 
-import ListeStock from '../Items/Lb (isteStock';
-
+import ListeStock from '../Items/ListeStock';
 export default function PageGerant() {
   return <ListeStock />;
 }
