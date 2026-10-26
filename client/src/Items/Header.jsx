@@ -4,7 +4,9 @@ import './Layout.css';
 export default function Header({ page, setPage, nbPanier }) {
   return (
     <header className="header">
-      <h1 className="logo">Beverly <span>Gadgets</span></h1>
+      <h1 className="logo" onClick={() => setPage('client')}>
+  Beverly <span>Gadgets</span>
+</h1>
       <nav>
         <button className={page === 'client' ? 'actif' : ''} onClick={() => setPage('client')}>Boutique</button>
         <button className={page === 'gerant' ? 'actif' : ''} onClick={() => setPage('gerant')}>QG</button>
