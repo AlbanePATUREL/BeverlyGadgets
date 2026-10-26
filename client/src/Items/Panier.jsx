@@ -1,7 +1,7 @@
 import './Panier.css';
 import { formatPrix } from '../format.js';
 
-export default function PagePanier({ panier, onChangerQuantite, onRetirer, onVider, onContinuer }) {
+export default function PagePanier({ panier, onRetirer, onVider, onContinuer }) {
   const total = panier.reduce((somme, l) => somme + l.prix * l.quantite, 0);
 
   // panier vide
@@ -30,9 +30,7 @@ export default function PagePanier({ panier, onChangerQuantite, onRetirer, onVid
             </div>
 
             <div className="panier-quantite">
-              <button onClick={() => onChangerQuantite(l.id, -1)} aria-label="Diminuer">−</button>
-              <span>{l.quantite}</span>
-              <button onClick={() => onChangerQuantite(l.id, +1)} aria-label="Augmenter">+</button>
+              <span>Quantité : 1</span>
             </div>
 
             <div className="panier-sous-total">{formatPrix(l.prix * l.quantite)}</div>

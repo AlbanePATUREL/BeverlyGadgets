@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PageClient from './pages/client.jsx';
 import PageGerant from './pages/admin.jsx';
-import PagePanier from './Items/Panier.jsx';          // NOUVEAU : la page panier
+import PagePanier from './Items/Panier.jsx';         
 import Header from './Items/Header.jsx';
 import Footer from './Items/Footer.jsx';
 
@@ -14,22 +14,12 @@ export default function App() {
     setPanier((prev) => {
       const existant = prev.find((l) => l.id === gadget.id);
       if (existant) {
-        return prev.map((l) =>
-          l.id === gadget.id ? { ...l, quantite: l.quantite + 1 } : l
-        );
+        return prev;
       }
       return [...prev, { ...gadget, quantite: 1 }];
     });
   }
 
-  // NOUVEAU : +1 ou -1 sur une ligne (à 0, la ligne disparaît)
-  function changerQuantite(id, delta) {
-    setPanier((prev) =>
-      prev
-        .map((l) => (l.id === id ? { ...l, quantite: l.quantite + delta } : l))
-        .filter((l) => l.quantite > 0)
-    );
-  }
 
   // NOUVEAU : supprime une ligne
   function retirerDuPanier(id) {
@@ -52,13 +42,11 @@ export default function App() {
       <Header page={page} setPage={setPage} nbPanier={nbPanier} />
 
       <main className="page">
-        {/* CHANGÉ : trois pages au lieu de deux */}
         {page === 'client' && <PageClient ajouterAuPanier={ajouterAuPanier} />}
         {page === 'gerant' && <PageGerant />}
         {page === 'panier' && (
           <PagePanier
             panier={panier}
-            onChangerQuantite={changerQuantite}
             onRetirer={retirerDuPanier}
             onVider={viderPanier}
             onContinuer={() => setPage('client')}
